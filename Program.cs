@@ -106,8 +106,8 @@ namespace CombAlg2
 
         static bool IsHitByPawn(Position pawnPos, Position pos)
         {
-            return (pawnPos.Letter != pos.Letter + 1 && pawnPos.Numeral != pos.Numeral + 1) || (pawnPos.Letter != pos.Letter + 1 && pawnPos.Numeral != pos.Numeral - 1)
-                || (pawnPos.Letter != pos.Letter - 1 && pawnPos.Numeral != pos.Numeral + 1) || (pawnPos.Letter != pos.Letter - 1 && pawnPos.Numeral != pos.Numeral - 1);
+            return (pawnPos.Letter == pos.Letter + 1 && pawnPos.Numeral == pos.Numeral + 1) || (pawnPos.Letter == pos.Letter + 1 && pawnPos.Numeral == pos.Numeral - 1)
+                || (pawnPos.Letter == pos.Letter - 1 && pawnPos.Numeral == pos.Numeral + 1) || (pawnPos.Letter == pos.Letter - 1 && pawnPos.Numeral == pos.Numeral - 1);
         }
 
         static char Convert(int numeral) //converter from integer to char
