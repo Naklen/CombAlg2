@@ -11,11 +11,20 @@ namespace CombAlg2
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(char.ConvertFromUtf32('a' + 1)[0]);
+            while (true)
+            {
+                MainCycle();
+            }
+        }
+
+        static void MainCycle()
+        {
             var initialPositions = GetInitialPositions();
             var rout = BuildRouteToPawn(findPawnPos(initialPositions));
+            Console.WriteLine("Write from knight initial position to pawn position:\n");
             foreach (var pos in rout)
                 Console.WriteLine(pos);
+            Console.WriteLine("");
             Console.ReadKey();
         }
 
@@ -83,22 +92,10 @@ namespace CombAlg2
 
         static Tuple<Position, Position> GetInitialPositions()
         {
-            var knightPosStr = "";
-            var pawnPosStr = "";          
-            try
-            {
-                using (var sr = new StreamReader("./in.txt"))
-                {
-                    knightPosStr = sr.ReadLine();
-                    pawnPosStr = sr.ReadLine();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.ReadKey();
-                Environment.Exit(1);
-            }
+            Console.WriteLine("Type knight position");
+            var knightPosStr = Console.ReadLine();
+            Console.WriteLine("Type pawn position");
+            var pawnPosStr = Console.ReadLine();            
             var knightPos = new Position(knightPosStr[0], int.Parse(knightPosStr[1].ToString()));
             var pawnPos = new Position(pawnPosStr[0], int.Parse(pawnPosStr[1].ToString()));
             return new Tuple<Position, Position>(knightPos, pawnPos);
