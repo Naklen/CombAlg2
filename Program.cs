@@ -11,12 +11,9 @@ namespace CombAlg2
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(char.ConvertFromUtf32('a' + 1)[0]);
             var initialPositions = GetInitialPositions();
-            var rout = BuildRouteToPawn(findPawnPos(initialPositions));
-            foreach (var pos in rout)
-                Console.WriteLine(pos);
-            Console.ReadKey();
+            var route = BuildRouteToPawn(findPawnPos(initialPositions));
+            WriteRoute(route);
         }
 
         static List<string> BuildRouteToPawn(Position foundPawnPos)
@@ -102,6 +99,26 @@ namespace CombAlg2
             var knightPos = new Position(knightPosStr[0], int.Parse(knightPosStr[1].ToString()));
             var pawnPos = new Position(pawnPosStr[0], int.Parse(pawnPosStr[1].ToString()));
             return new Tuple<Position, Position>(knightPos, pawnPos);
+        }
+
+        static void WriteRoute(List<string> route)
+        {
+            try
+            {
+                using (var sw = new StreamWriter("./out.txt", false, Encoding.Default))
+                {
+                    foreach (var pos in route)
+                    {
+                        sw.WriteLine(pos);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+                Environment.Exit(1);
+            }
         }
 
         static bool IsHitByPawn(Position pawnPos, Position pos)
