@@ -12,7 +12,7 @@ namespace CombAlg2
         static void Main(string[] args)
         {
             var initialPositions = GetInitialPositions();
-            var route = BuildRouteToPawn(findPawnPos(initialPositions));
+            var route = BuildRouteToPawn(FindPawnPos(initialPositions));
             WriteRoute(route);
         }
 
@@ -29,7 +29,7 @@ namespace CombAlg2
             return result;
         }
 
-        static Position findPawnPos(Tuple<Position, Position> initPositions) 
+        static Position FindPawnPos(Tuple<Position, Position> initPositions) 
         {
             var knightInitPos = initPositions.Item1;
             var pawnInitPos = initPositions.Item2;
@@ -40,7 +40,7 @@ namespace CombAlg2
                 var position = queue.Dequeue();
                 if (IsHitByPawn(pawnInitPos, position))
                     continue;
-                if (pawnInitPos.isSamePosition(position))
+                if (pawnInitPos.IsSamePosition(position))
                     return position;
                 if (position.Numeral <= 6) 
                 {
@@ -146,7 +146,7 @@ namespace CombAlg2
             PreviousPosition = previous;
         }
 
-        public bool isSamePosition(Position position)
+        public bool IsSamePosition(Position position)
         {
             return Letter == position.Letter && Numeral == position.Numeral;
         }
